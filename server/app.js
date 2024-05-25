@@ -26,6 +26,17 @@ app.use(require("./routes/auth"))
 app.use(require("./routes/createPost"))
 app.use(require("./routes/user"))
 
+app.get("/*", function (req, res) {
+    res.sendFile(
+        path.join(__dirname, "../client/build/index.html"),
+        function (err) {
+            if (err) {
+                res.status(500).send(err);
+            }
+        }
+    )
+})
+
 app.listen(PORT, () => {
     console.log("server is running on port" + " " + PORT)
 
